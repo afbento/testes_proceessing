@@ -1441,7 +1441,7 @@ int fint = 3;
 void setup() {
   size(640, 360);
   flock = new Flock();
-  myFont = createFont("Georgia", 12);
+  myFont = createFont("Georgia", 16);
   textFont(myFont);
   // Add an initial set of boids into the system
   for (int i = 0; i < 150; i++) {
@@ -1485,7 +1485,8 @@ class Flock {
   }
 	
 	 textAlign(LEFT, CENTER);
-     text("Robots:"+gaivotas+"     Quadros por segundo:"+int(frate), 20, height-20);
+	 fill(255);
+     text("Gaivotas : "+gaivotas+"       Quadros por segundo : "+int(frate), 20, height-20);
   }
 
   void addBoid(Boid b) {
@@ -1591,10 +1592,37 @@ class Boid {
     pushMatrix();
     translate(position.x, position.y);
     rotate(theta);
-    beginShape(TRIANGLES);
-    vertex(0, -r*2);
-    vertex(-r, r*2);
-    vertex(r, r*2);
+    beginShape(LINES);  //TRIANGLES
+    vertex(0, -r*2.5);
+	vertex(r/2, -r);
+	vertex(r/2, -r);
+	vertex(r*2.5, -r*1.5);
+	vertex(r*2.5, -r*1.5);
+	vertex(r*5, r*0.5);
+	vertex(r*5, r*0.5);
+	vertex(r*3, 0);
+	vertex(r*3, 0);
+	vertex(r/2, r/2);
+	vertex(r/2, r/2);
+	vertex(r, r*2);
+	vertex(r, r*2);
+	vertex(-r, r*2);
+	vertex(-r, r*2);
+	vertex(-r/2, r/2);
+	vertex(-r/2, r/2);
+	vertex(-r*3, 0);
+	vertex(-r*3, 0);
+	vertex(-r*5, r*0.5);
+	vertex(-r*5, r*0.5);
+	vertex(-r*2.5, -r*1.5);
+	vertex(-r*2.5, -r*1.5);
+	vertex(-r/2, -r);
+	vertex(-r/2, -r);
+	vertex(0, -r*2.5);
+	
+	//vertex(0, -r*2);
+   // vertex(-r, r*2);
+    //vertex(r, r*2);
     endShape();
     popMatrix();
   }
