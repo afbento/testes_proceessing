@@ -1432,9 +1432,17 @@ return w=r.setupParser(w,{Browser:t,aFunctions:n,defaultScope:b}),w=r.finalize(w
 		<script type="application/processing">
 			Flock flock;
 
+PFont myFont;	
+int gaivotas=0;		
+int fcount, lastm;
+float frate;
+int fint = 3;
+			
 void setup() {
   size(640, 360);
   flock = new Flock();
+  myFont = createFont("Georgia", 12);
+  textFont(myFont);
   // Add an initial set of boids into the system
   for (int i = 0; i < 150; i++) {
     flock.addBoid(new Boid(width/2,height/2));
@@ -1463,13 +1471,26 @@ class Flock {
   }
 
   void run() {
+  
     for (Boid b : boids) {
       b.run(boids);  // Passing the entire list of boids to each boid individually
     }
+	 fcount += 1;
+  int m = millis();
+  if (m - lastm > 1000 * fint) {
+    frate = float(fcount) / fint;
+    fcount = 0;
+    lastm = m;
+   // println("fps: " + frate); 
+  }
+	
+	 textAlign(LEFT, CENTER);
+     text("Robots:"+gaivotas+"     Quadros por segundo:"+int(frate), 20, height-20);
   }
 
   void addBoid(Boid b) {
     boids.add(b);
+	gaivotas++;
   }
 
 }
